@@ -1,0 +1,18 @@
+server:
+    port: 7000
+    servlet:
+        context-path: /
+        session:
+            timeout: -1s
+    undertow:
+        #worker-threads: 8  #工作线程是 IO线程的数量8倍合理
+        buffer-size: 512
+spring:
+    application:
+        name: ${project.artifactId}
+        version: ${project.version}
+    cloud:
+        sentinel:
+            transport:
+                port: 7002
+

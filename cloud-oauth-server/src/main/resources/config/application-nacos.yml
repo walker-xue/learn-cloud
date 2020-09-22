@@ -1,0 +1,68 @@
+spring:
+    redis:
+        database: 2
+        host: 127.0.0.1
+        lettuce:
+            pool:
+                max-active: 4
+                max-wait: -1ms
+                max-idle: 2
+                min-idle: 0
+    datasource:
+        url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/ag_auth_v1?characterEncoding=utf8&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        username: root
+        password: 123456
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+    cloud:
+        nacos:
+            discovery:
+                server-addr: 192.168.204.1:8848
+        sentinel:
+            transport:
+                dashboard: 192.168.204.1:8080
+jwt:
+    token-header: Authorization
+    expire: 14400
+    rsa-secret: xx1WET12^%3^(WE45
+client:
+    id: donkey-cloud-auth
+    secret: 123456
+    token-header: x-client-token
+    expire: 14400
+    rsa-secret: x2318^^(*WRYQWR(QW&T
+#redis-cache 相关
+redis:
+    pool:
+        maxActive: 300
+        maxIdle: 100
+        maxWait: 1000
+    host: ${REDIS_HOST:127.0.0.1}
+    port: ${REDIS_PORT:6379}
+    password: null
+    timeout: 2000
+    # 服务或应用名
+    sysName: ace-admin
+    enable: true
+    database: 0
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+    endpoint:
+        health:
+            show-details: ALWAYS

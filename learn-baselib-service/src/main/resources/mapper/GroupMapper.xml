@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.donkeycode.data.mapper.GroupMapper">
+
+    <delete id="deleteGroupMembersById">
+        delete from base_group_member where group_id = #{groupId}
+    </delete>
+
+    <delete id="deleteGroupLeadersById">
+        delete from base_group_leader where group_id = #{groupId}
+    </delete>
+
+    <insert id="insertGroupMembersById">
+        insert into base_group_member (
+        group_id,user_id
+        )
+        values(
+        #{groupId},#{userId}
+        )
+    </insert>
+    <insert id="insertGroupLeadersById">
+        insert into base_group_leader (
+        group_id,user_id
+        )
+        values(
+        #{groupId},#{userId}
+        )
+    </insert>
+</mapper>

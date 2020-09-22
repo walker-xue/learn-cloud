@@ -1,0 +1,80 @@
+spring:
+    application:
+        name: ${project.artifactId}
+        version: ${project.version}
+    cloud:
+        sentinel:
+            transport:
+                port: 8091
+    servlet:
+        multipart:
+            maxFileSize: 10MB
+            maxRequestSize: 10MB
+    http:
+        encoding:
+            charset: UTF-8
+            enabled: true
+            force: true
+    resources:
+        chain:
+            compressed: true
+        cache:
+            cachecontrol:
+                maxAge: 0
+                no-cache: true
+                no-store: true
+                must-revalidate: true
+feign:
+    sentinel:
+        enabled: true
+    httpclient:
+        enabled: false
+    okhttp:
+        enabled: true
+    compression:
+        request:
+            enabled: true
+            mime-types: text/xml,application/xml,application/json
+            min-request-size: 2048
+        response:
+            enabled: true
+server:
+    port: 8090
+    servlet:
+        context-path: /
+        session:
+            timeout: 60s
+    http2:
+        enabled: true
+    undertow:
+        #worker-threads: 8  #工作线程是 IO线程的数量8倍合理
+        buffer-size: 512
+#io-threads: 4  #默认是服务器CPU核数
+#mybatis
+mybatis:
+    type-aliases-package: com.donkeycode.data.domain
+    type-handlers-package: com.donkeycode.data.handler
+    mapper-locations: classpath:com/donkeycode/data/mapper/*Mapper.xml
+    configuration:
+        map-underscore-to-camel-case: true
+        default-fetch-size: 100
+        default-statement-timeout: 30
+# mapper
+mapper:
+    not-empty: false
+    identity: MYSQL
+    safeDelete: true
+    safeUpdate: true
+    mappers: com.donkeycode.boot.utils.BaseMapper
+# mapper pagehelper page.
+pagehelper:
+    autoDialect: true
+    closeConn: true
+    offset-as-page-num: false
+http:
+    maxTotal: 100
+    defaultMaxPerRoute: 20
+    connectTimeout: 1000
+    connectionRequestTimeout: 500
+    socketTimeout: 10000
+    staleConnectionCheckEnabled: true

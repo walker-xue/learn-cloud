@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+    PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+    "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <properties resource="generator/config.properties"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+
+        <plugin type="${mapper.plugin}">
+            <property name="mappers" value="${mapper.Mapper}"/>
+            <property name="caseSensitive" value="true"/>
+        </plugin>
+
+
+        <jdbcConnection driverClass="${jdbc.driverClass}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.user}"
+                        password="${jdbc.password}">
+        </jdbcConnection>
+
+        <!-- generate Model -->
+        <javaModelGenerator targetPackage="com.donkeycode.data.domain" targetProject="src\main\java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+            <property name="rootClass" value="com.donkeycode.core.BaseEntity"/>
+        </javaModelGenerator>
+
+
+        <!-- generate xml -->
+        <sqlMapGenerator targetPackage="com.donkeycode.data.mapper"  targetProject="D:\MyProject\src\main\resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- generate Mapper -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.donkeycode.data.mapper"
+                             targetProject="src\main\java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="exampleMethodVisibility" value="public"/>
+        </javaClientGenerator>
+        <!--schema:数据库的schema,可以使用SQL通配符匹配。如果设置了该值，生成SQL的表名会变成如schema.tableName的形式。-->
+        <!--catalog:数据库的catalog，如果设置了该值，生成SQL的表名会变成如catalog.tableName的形式。-->
+        <!--alias:如果指定，这个值会用在生成的select查询SQL的表的别名和列名上。 列名会被别名为 alias_actualColumnName(别名_实际列名) 这种模式。-->
+        <!--domainObjectName:生成对象的基本名称。如果没有指定，MBG会自动根据表名来生成名称。-->
+        <!--enableXXX:XXX代表多种SQL方法，该属性用来指定是否生成对应的XXX语句。-->
+        <!--selectByPrimaryKeyQueryId:DBA跟踪工具会用到，具体请看详细文档。-->
+        <!--selectByExampleQueryId:DBA跟踪工具会用到，具体请看详细文档。-->
+        <!--modelType:和<context>的defaultModelType含义一样，这里可以针对表进行配置，这里的配置会覆盖<context>的defaultModelType配置。-->
+        <!--escapeWildcards:这个属性表示当查询列，是否对schema和表名中的SQL通配符 ('' and '%') 进行转义。 对于某些驱动当schema或表名中包含SQL通配符时（例如，一个表名是MYTABLE，有一些驱动需要将下划线进行转义）是必须的。默认值是false。-->
+        <!--delimitIdentifiers:是否给标识符增加分隔符。默认false。当catalog,schema或tableName中包含空白时，默认为true。-->
+        <!--delimitAllColumns:是否对所有列添加分隔符。默认false。-->
+        <!--该元素包含多个可用的<property>子元素，可选属性为：-->
+
+        <!--constructorBased:和<javaModelGenerator>中的属性含义一样。-->
+        <!--ignoreQualifiersAtRuntime:生成的SQL中的表名将不会包含schema和catalog前缀。-->
+        <!--immutable:和<javaModelGenerator>中的属性含义一样。-->
+        <!--modelOnly:此属性用于配置是否为表只生成实体类。如果设置为true就不会有Mapper接口。如果配置了<sqlMapGenerator>，并且modelOnly为true，那么XML映射文件中只有实体对象的映射元素(<resultMap>)。如果为true还会覆盖属性中的enableXXX方法，将不会生成任何CRUD方法。-->
+        <!--rootClass:和<javaModelGenerator>中的属性含义一样。-->
+        <!--rootInterface:和<javaClientGenerator>中的属性含义一样。-->
+        <!--runtimeCatalog:运行时的catalog，当生成表和运行环境的表的catalog不一样的时候可以使用该属性进行配置。-->
+        <!--runtimeSchema:运行时的schema，当生成表和运行环境的表的schema不一样的时候可以使用该属性进行配置。-->
+        <!--runtimeTableName:运行时的tableName，当生成表和运行环境的表的tableName不一样的时候可以使用该属性进行配置。-->
+        <!--selectAllOrderByClause:该属性值会追加到selectAll方法后的SQL中，会直接跟order by拼接后添加到SQL末尾。-->
+        <!--useActualColumnNames:如果设置为true,那么MBG会使用从数据库元数据获取的列名作为生成的实体对象的属性。 如果为false(默认值)，MGB将会尝试将返回的名称转换为驼峰形式。 在这两种情况下，可以通过 元素显示指定，在这种情况下将会忽略这个（useActualColumnNames）属性。-->
+        <!--useColumnIndexes:如果是true,MBG生成resultMaps的时候会使用列的索引,而不是结果中列名的顺序。-->
+        <!--useCompoundPropertyNames:如果是true,那么MBG生成属性名的时候会将列名和列备注接起来. 这对于那些通过第四代语言自动生成列(例如:FLD22237),但是备注包含有用信息(例如:"customer id")的数据库来说很有用. 在这种情况下,MBG会生成属性名FLD2237_CustomerId。-->
+        <!--除了<property>子元素外，<table>还包含以下子元素：-->
+
+        <!--<generatedKey> (0个或1个)-->
+        <!--<columnRenamingRule> (0个或1个)-->
+        <!--<columnOverride> (0个或多个)-->
+        <!--<ignoreColumn> (0个或多个)-->
+        <table tableName="course" domainObjectName="Course" delimitAllColumns="false">
+            <generatedKey column="course_id" sqlStatement="Mysql" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

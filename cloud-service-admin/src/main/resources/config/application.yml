@@ -1,0 +1,47 @@
+spring:
+    application:
+        name: ${project.artifactId}
+        version: ${project.version}
+    cloud:
+        sentinel:
+            transport:
+                port: 9221
+    http:
+        encoding:
+            charset: UTF-8
+            enabled: true
+            force: true
+    resources:
+        chain:
+            compressed: true
+        cache:
+            cachecontrol:
+                maxAge: 0
+                no-cache: true
+                no-store: true
+                must-revalidate: true
+feign:
+    sentinel:
+        enabled: true
+    httpclient:
+        enabled: false
+    okhttp:
+        enabled: true
+    compression:
+        request:
+            enabled: true
+            mime-types: text/xml,application/xml,application/json
+            min-request-size: 2048
+        response:
+            enabled: true
+server:
+    port: 9220
+    servlet:
+        context-path: /
+        session:
+            timeout: 60s
+    http2:
+        enabled: true
+    undertow:
+        #worker-threads: 8  #工作线程是 IO线程的数量8倍合理
+        buffer-size: 512

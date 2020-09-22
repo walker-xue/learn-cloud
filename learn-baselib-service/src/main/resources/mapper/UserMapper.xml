@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.donkeycode.data.mapper.UserMapper">
+    <select id="selectMemberByGroupId" resultType="com.donkeycode.data.entity.User">
+        select u.* from base_user u
+        left join base_group_member gm
+        on gm.user_id = u.id where gm.group_id = #{groupId}
+    </select>
+    <select id="selectLeaderByGroupId" resultType="com.donkeycode.data.entity.User">
+        select u.* from base_user u
+        left join base_group_leader gm
+        on gm.user_id = u.id where gm.group_id = #{groupId}
+    </select>
+</mapper>

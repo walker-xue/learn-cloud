@@ -1,0 +1,10 @@
+<!-- 这个是borball的微信的测试账号，自己申请：http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login -->
+<AppSetting>
+    <appId>wx16089ca12ea80b81</appId>
+    <secret>2672c06d8dbf0fa2b7e80c7858b5a9f6</secret>
+    <token>wonskd113n</token>
+    <aesKey>null</aesKey>
+    <!-- 可以指定自己的tokenHolderClass，继承与com.riversoft.weixin.common.AccessTokenHolder
+    <tokenHolderClass>com.abc.Abc</tokenHolderClass>
+    -->
+</AppSetting>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--应用日志-->
+    <bean id="appLogInfoExcel" class="com.donkeycode.boot.file.ExcelHead">
+        <property name="rowCount" value="1"/>
+        <property name="columns">
+            <list>
+                <ref bean="appLogInfoExcelColumn1"/>
+                <ref bean="appLogInfoExcelColumn2"/>
+                <ref bean="appLogInfoExcelColumn3"/>
+                <ref bean="appLogInfoExcelColumn4"/>
+                <ref bean="appLogInfoExcelColumn5"/>
+                <ref bean="appLogInfoExcelColumn6"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="appLogInfoExcelColumn1" class="com.donkeycode.boot.file.ExcelColumn">
+        <property name="fieldName" value="resourceType"/>
+        <property name="fieldDispName" value="资源标识符"/>
+    </bean>
+    <bean id="appLogInfoExcelColumn2" class="com.donkeycode.boot.file.ExcelColumn">
+        <property name="fieldName" value="operateType"/>
+        <property name="fieldDispName" value="操作标识符"/>
+    </bean>
+    <bean id="appLogInfoExcelColumn3" class="com.donkeycode.boot.file.ExcelColumn">
+        <property name="fieldName" value="operateUserName"/>
+        <property name="fieldDispName" value="操作用户名"/>
+    </bean>
+    <bean id="appLogInfoExcelColumn4" class="com.donkeycode.boot.file.ExcelColumn">
+        <property name="fieldName" value="operateTime"/>
+        <property name="fieldDispName" value="操作时间"/>
+    </bean>
+
+    <bean id="appLogInfoExcelColumn5" class="com.donkeycode.boot.file.ExcelColumn">
+        <property name="fieldName" value="resourceIds"/>
+        <property name="fieldDispName" value="对象主键"/>
+    </bean>
+
+    <bean id="appLogInfoExcelColumn6" class="com.donkeycode.boot.file.ExcelColumn">
+        <property name="fieldName" value="param"/>
+        <property name="fieldDispName" value="操作参数"/>
+    </bean>
+</beans>

@@ -1,0 +1,48 @@
+spring:
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        type: com.zaxxer.hikari.HikariDataSource
+        url: jdbc:mysql://192.168.204.100:3306/cloud_course_db?characterEncoding=utf8&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        username: root
+        password: ENC(q+5OTpXRumEVvtSHVPVt8w==)
+        initialSize: 1
+        maxActive: 3
+        maxIdle: 2
+        hikari:
+            data-source-properties:
+                cachePrepStmts: true
+                prepStmtCacheSize: 250
+                prepStmtCacheSqlLimit: 2048
+                useServerPrepStmts: true
+    rabbitmq:
+        host: localhost
+        password: secret
+        port: 5672
+        username: admin
+    cloud:
+        nacos:
+            discovery:
+                server-addr: 192.168.204.100:8848
+        sentinel:
+            transport:
+                dashboard: 192.168.204.100:8080
+    redis:
+        database: 2
+        host: 192.168.204.100
+        lettuce:
+            pool:
+                max-active: 4
+                max-wait: -1ms
+                max-idle: 2
+                min-idle: 0
+management:
+    security:
+        enabled: false
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+    endpoint:
+        health:
+            show-details: ALWAYS
+

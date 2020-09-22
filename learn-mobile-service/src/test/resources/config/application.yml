@@ -1,0 +1,111 @@
+#active: #spring.profiles.active#
+server:
+    port: 8090
+    profiles:
+        active: dev
+spring:
+    application:
+        name: Donkey ACL
+        version: 0.0.1
+    jmx:
+        enabled: false
+    aop:
+        proxy-target-class: true
+    boot:
+        admin:
+            context-path: /admin
+    http:
+        multipart:
+            enabled: true
+            file-size-threshold: 0
+            max-file-size: 40Mb
+            max-request-size: 100Mb
+    datasource:
+        driverClassName: com.mysql.jdbc.Driver
+        type: com.zaxxer.hikari.HikariDataSource
+        url: jdbc:mysql://rds83s3g48j885if7z87o.mysql.rds.aliyuncs.com:3306/laobadb?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: laobadb
+        password: Laobadb2017
+        hikari:
+            data-source-properties:
+                cachePrepStmts: true
+                prepStmtCacheSize: 250
+                prepStmtCacheSqlLimit: 2048
+                useServerPrepStmts: true
+#        platform: mysql
+#        schema: schema-mysql.sql
+#        data: data-mysql.sql
+#        initialize: true
+#        continue-on-error: true
+
+jasypt:
+    encryptor:
+        password: BdaObXaELAA
+
+donkey:
+    code: donkey_acl_app
+    cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
+        allowed-headers: "*"
+        exposed-headers: "Authorization,Link,X-Total-Count"
+        allow-credentials: true
+        max-age: 1800
+    security:
+        authentication:
+            jwt:
+                secret: my-secret-token-to-change-in-production
+                token-validity-in-seconds: 86400
+                token-validity-in-seconds-for-remember-me: 2592000
+#mybatis
+mybatis:
+    type-aliases-package: com.donkeycode.lbframe.data.domain
+    type-handlers-package: com.donkeycode.lbframe.data.handler
+    mapper-locations: classpath:com/donkeycode/lbframe/data/mapper/*Mapper.xml
+    configuration:
+        map-underscore-to-camel-case: true
+        default-fetch-size: 100
+        default-statement-timeout: 30
+
+#mapper
+mapper:
+    not-empty: false
+    identity: MYSQL
+    safeDelete: true
+    safeUpdate: true
+    mappers: com.donkeycode.boot.utils.BaseMapper
+#pagehelper.
+pagehelper:
+    autoDialect: true
+    closeConn: true
+    offset-as-page-num: false
+
+#最大连接数
+#http.maxTotal = 100
+#并发数
+#http.defaultMaxPerRoute = 20
+#创建连接的最长时间
+#http.connectTimeout=1000
+#从连接池中获取到连接的最长时间
+#http.connectionRequestTimeout=500
+#数据传输的最长时间
+#http.socketTimeout=10000
+#提交请求前测试连接是否可用
+#http.staleConnectionCheckEnabled=true
+http:
+    maxTotal: 100
+    defaultMaxPerRoute: 20
+    connectTimeout: 1000
+    connectionRequestTimeout: 500
+    socketTimeout: 10000
+    staleConnectionCheckEnabled: true
+
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+    endpoint:
+        health:
+            show-details: ALWAYS

@@ -1,0 +1,79 @@
+spring:
+    devtools:
+        restart:
+            enabled: true
+        livereload:
+            enabled: false
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        type: com.zaxxer.hikari.HikariDataSource
+        url: jdbc:mysql://192.168.204.100:3306/cloud_course_db?characterEncoding=utf8&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        username: root
+        password: ENC(q+5OTpXRumEVvtSHVPVt8w==)
+        initialSize: 1
+        maxActive: 3
+        maxIdle: 2
+        hikari:
+            data-source-properties:
+                cachePrepStmts: true
+                prepStmtCacheSize: 250
+                prepStmtCacheSqlLimit: 2048
+                useServerPrepStmts: true
+    cloud:
+        nacos:
+            discovery:
+                server-addr: 192.168.204.100:8848
+        sentinel:
+            transport:
+                dashboard: 192.168.204.100:8080
+    redis:
+        database: 2
+        host: 192.168.204.100
+        lettuce:
+            pool:
+                max-active: 4
+                max-wait: -1ms
+                max-idle: 2
+                min-idle: 0
+jasypt:
+    encryptor:
+        password: BdaObXaELAA
+wxmp:
+    appId: wx16089ca12ea80b81
+    secret: 2672c06d8dbf0fa2b7e80c7858b5a9f6
+    aesKey: null
+aliyun:
+    oss:
+        endpoint: http://oss-cn-zhangjiakou.aliyuncs.com/
+        accessKeyId: g_6jby29LIi2jC_532ta1LIr1bAnhU40048MFfoM
+        accessKeySecret: 1GMRhDhmpFGg8TkxH5wHPvZv4Cy4SXfl03jRXpWm
+        bucketName: open-class
+        cdnPath: http://proylevc4.bkt.clouddn.com
+localtemp:
+    osspath: /ossfile
+management:
+    security:
+        enabled: false
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+    endpoint:
+        health:
+            show-details: ALWAYS
+    metrics:
+        export:
+            influx:
+                enabled: true
+                db: coursemetrics
+                uri: http://localhost:8086
+                user-name: admin
+                password: admin
+                connect-timeout: 1s
+                read-timeout: 10s
+                auto-create-db: true
+                step: 1m
+                num-threads: 2
+                consistency: one
+                compressed: true
+                batch-size: 10000
